@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">OpaqueWindowApp</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_display_name">O P A Q U E</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_opaque_splash_page">OpaqueSplashPage</string>
 
 </resources>
