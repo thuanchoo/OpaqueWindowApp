@@ -12,11 +12,7 @@ import android.widget.ImageView;
 public class OpaqueSplashPage extends Activity {
 
     ImageView image;
-<<<<<<< HEAD
     private final int SPLASH_DISPLAY_LENGTH = 5000;
-=======
-
->>>>>>> parent of 083fd27... Sleep time for splash Screen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +27,6 @@ public class OpaqueSplashPage extends Activity {
                         windowAnimation.start();
                     }
                 });
-<<<<<<< HEAD
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -42,7 +37,5 @@ public class OpaqueSplashPage extends Activity {
             }
         },SPLASH_DISPLAY_LENGTH);
 
-=======
->>>>>>> parent of 083fd27... Sleep time for splash Screen
     }
 }
