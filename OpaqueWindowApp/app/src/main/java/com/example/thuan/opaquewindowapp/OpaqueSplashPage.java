@@ -9,7 +9,7 @@ import android.widget.ImageView;
 public class OpaqueSplashPage extends Activity {
 
     ImageView image;
-
+    private final long SPLASH_DISPLAY_LENGTH = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,5 +24,15 @@ public class OpaqueSplashPage extends Activity {
                         windowAnimation.start();
                     }
                 });
+
+        try {
+            Thread.sleep(SPLASH_DISPLAY_LENGTH);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        //open next tragment code
+
     }
 }
