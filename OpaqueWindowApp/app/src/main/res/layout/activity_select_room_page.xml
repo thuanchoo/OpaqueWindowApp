@@ -1,0 +1,138 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.thuan.opaquewindowapp.SelectRoomPage">
+    <TextView
+        android:text="Select Room"
+        android:textSize="35dp"
+        android:layout_marginBottom="10dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#FF909090"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:padding="10dp" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="47dp"
+            android:maxHeight="47dp"
+            android:scaleType="fitCenter"
+            android:padding="1dp"
+            android:background="#ff000000"
+            android:src="@drawable/bedroom_img" />
+        <TextView
+            android:text="Master Bedroom"
+            android:textSize="20dp"
+            android:layout_gravity="left"
+            android:padding="12dp"
+            android:layout_marginLeft="10dp" />
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#FF909090"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:padding="10dp" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="47dp"
+            android:maxHeight="45dp"
+            android:scaleType="fitCenter"
+            android:padding="1dp"
+            android:background="#ff000000"
+            android:src="@drawable/bedroom_img" />
+        <TextView
+            android:text="Guest Bedroom"
+            android:textSize="20dp"
+            android:padding="12dp"
+            android:layout_marginLeft="10dp" />
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#FF909090"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:padding="10dp" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="47dp"
+            android:maxHeight="47dp"
+            android:scaleType="fitCenter"
+            android:padding="1dp"
+            android:background="#ff000000"
+            android:src="@drawable/bathroom_img" />
+        <TextView
+            android:text="Bathroom"
+            android:textSize="20dp"
+            android:padding="12dp"
+            android:layout_marginLeft="10dp" />
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#FF909090"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:padding="10dp" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="47dp"
+            android:maxHeight="47dp"
+            android:scaleType="fitCenter"
+            android:padding="1dp"
+            android:background="#ff000000"
+            android:src="@drawable/kitchen_img" />
+        <TextView
+            android:text="Kitchen"
+            android:textSize="20dp"
+            android:padding="12dp"
+            android:layout_marginLeft="10dp" />
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#FF909090"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:padding="10dp" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="47dp"
+            android:maxHeight="47dp"
+            android:scaleType="fitCenter"
+            android:padding="1dp"
+            android:background="#ff000000"
+            android:src="@drawable/livingroom_img" />
+        <TextView
+            android:text="Living Room"
+            android:textSize="20dp"
+            android:padding="12dp"
+            android:layout_marginLeft="10dp" />
+    </TableRow>
+</TableLayout>
