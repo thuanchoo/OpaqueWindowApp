@@ -24,6 +24,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.thuan.opaquewindowapp.OpaqueSplashPage" />
         </activity>
+        <activity
+            android:name=".ControlRoomPage"
+            android:label="@string/title_activity_control_room_page"
+            android:parentActivityName=".SelectRoomPage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.thuan.opaquewindowapp.SelectRoomPage" />
+        </activity>
     </application>
 
 </manifest>
