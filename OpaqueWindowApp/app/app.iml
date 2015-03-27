@@ -83,8 +83,26 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="javax.inject-2.2.0" level="project" />
+    <orderEntry type="library" exported="" name="jackson-xc-1.9.13" level="project" />
+    <orderEntry type="library" exported="" name="osgi-resource-locator-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="jackson-core-asl-1.9.13" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.2" level="project" />
+    <orderEntry type="library" exported="" name="aopalliance-repackaged-2.2.0" level="project" />
+    <orderEntry type="library" exported="" name="jersey-media-json-jackson-2.8" level="project" />
+    <orderEntry type="library" exported="" name="javax.annotation-api-1.2" level="project" />
+    <orderEntry type="library" exported="" name="hk2-api-2.2.0" level="project" />
+    <orderEntry type="library" exported="" name="jackson-mapper-asl-1.9.13" level="project" />
+    <orderEntry type="library" exported="" name="javax.ws.rs-api-2.0" level="project" />
+    <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
+    <orderEntry type="library" exported="" name="jersey-common-2.8" level="project" />
+    <orderEntry type="library" exported="" name="hk2-utils-2.2.0" level="project" />
+    <orderEntry type="library" exported="" name="hk2-locator-2.2.0" level="project" />
+    <orderEntry type="library" exported="" name="jackson-jaxrs-1.9.13" level="project" />
+    <orderEntry type="library" exported="" name="jersey-client-2.8" level="project" />
+    <orderEntry type="library" exported="" name="jersey-guava-2.8" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.2" level="project" />
+    <orderEntry type="library" exported="" name="javassist-3.18.1-GA" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.2" level="project" />
   </component>
 </module>
