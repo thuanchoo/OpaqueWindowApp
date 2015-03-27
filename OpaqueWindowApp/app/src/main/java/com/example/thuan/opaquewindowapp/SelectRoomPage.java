@@ -69,7 +69,7 @@ public class SelectRoomPage extends Activity implements View.OnClickListener {
     private void doesRoomExist () {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         dialogBuilder
-                .setMessage("No Insteon device found in this room.")
+                .setMessage("No devices found in this room.")
                 .setCancelable(false)
                 .setNegativeButton("Take me back", new DialogInterface.OnClickListener() {
                     @Override
