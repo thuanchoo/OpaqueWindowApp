@@ -3,35 +3,13 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#FFFFFFFF"
     tools:context="com.example.thuan.opaquewindowapp.OpaqueSplashPage">
 
     <TextView
         android:text="@string/app_display_name"
-        android:textSize="50dp"
-        android:textColor="#64B5F6"
+        android:textSize="40dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginRight="10dp"
-            android:text="powered by "/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:maxHeight="15dp"
-            android:src="@drawable/insteonlogo"/>
-
-
-        </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/window_animation"
