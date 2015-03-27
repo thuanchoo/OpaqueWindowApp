@@ -21,8 +21,6 @@ public class ControlRoomPage extends Activity implements View.OnClickListener {
     ColorDrawable buttonColor;
     int colorID;
 
-    private Context context;
-
     boolean togglePane1 = false;
     boolean togglePane2 = false;
     boolean togglePane3 = false;
@@ -43,16 +41,19 @@ public class ControlRoomPage extends Activity implements View.OnClickListener {
         winButton3.setOnClickListener(this);
         winButton4.setOnClickListener(this);
 
-        /*
-        ConnectivityManager check = (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo[] info = check.getAllNetworkInfo();
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo data = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED ||
+                cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ||
+                data.isConnected()) {
+            Toast.makeText(getApplicationContext(), "Internet is connected",Toast.LENGTH_SHORT).show();
 
-        for (int i = 0; i<info.length; i++){
-            if (info[i].getState() == NetworkInfo.State.CONNECTED){
-                Toast.makeText(context, "Internet is connected",Toast.LENGTH_SHORT).show();
-            }
-        } */
+        }
+        else if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED ||
+                cm.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTING) {
+            Toast.makeText(getApplicationContext(), "Internet is not connected",Toast.LENGTH_SHORT).show();
 
+        }
     }
 
     @Override
