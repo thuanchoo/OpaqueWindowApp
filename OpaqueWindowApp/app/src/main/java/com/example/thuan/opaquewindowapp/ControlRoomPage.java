@@ -43,6 +43,7 @@ public class ControlRoomPage extends Activity implements View.OnClickListener {
         winButton3.setOnClickListener(this);
         winButton4.setOnClickListener(this);
 
+        /*
         ConnectivityManager check = (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo[] info = check.getAllNetworkInfo();
 
@@ -50,7 +51,7 @@ public class ControlRoomPage extends Activity implements View.OnClickListener {
             if (info[i].getState() == NetworkInfo.State.CONNECTED){
                 Toast.makeText(context, "Internet is connected",Toast.LENGTH_SHORT).show();
             }
-        }
+        } */
 
     }
 
