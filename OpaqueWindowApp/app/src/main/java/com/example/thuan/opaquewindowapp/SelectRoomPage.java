@@ -19,6 +19,8 @@ public class SelectRoomPage extends Activity implements View.OnClickListener {
 
     boolean roomExists = false;
     final Context context = this;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
