@@ -8,7 +8,12 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 
-
+/* This is a simple splash page that will open immediately and display to the user
+ * once they open the application. The splash screen will remain on-screen for 5 seconds
+ * where it will display an animation of a window with one pane blacked out, indicating
+ * the transparency versus opaque. After 5 seconds, this fragment will finish and transfer
+ * over to the main control page where the user may select which room to operate on.
+ */
 public class OpaqueSplashPage extends Activity {
 
     ImageView image;

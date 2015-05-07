@@ -5,20 +5,20 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebChromeClient;
-import android.widget.Button;
 import android.widget.Toast;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/* This is the control page for the main room selected.
+ * This fragment will allow the user to control the product in
+ * the specified room by connecting the to the web page that hosts
+ * the GUI for the controls and communication between the application
+ * and the product.
+ */
 public class ControlRoomPage extends Activity {
 
     private class MyWebViewClient extends WebViewClient {
@@ -38,6 +38,13 @@ public class ControlRoomPage extends Activity {
         finish();
 
     }
+    /* To obtain the GUI, a webview is used to display the web page inside the
+     * application. In order for the application to control the product, proper
+     * internet connection is required. The following code will determine if
+     * there is a proper internet connection and indicate so. If there is no internet
+     * connection, the website will not be able to load, thus the user will have to
+     * refresh the page.
+     */
     WebView webview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +71,7 @@ public class ControlRoomPage extends Activity {
 
         final Context myApp = this;
 
-/* Set web client to allow javascript messages */
+/* Set web client to allow javascript messages from the website */
         webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onJsAlert(WebView view, String url, String message, final android.webkit.JsResult result)
@@ -89,7 +96,10 @@ public class ControlRoomPage extends Activity {
         });
         openURL();
     }
-    /** Opens the URL in a browser */
+     /* Function that Opens the URL in webview browser within app.
+      * Since we know exactly what IP the site is, the application will
+      * attempt to load that website.
+      */
     private void openURL() {
 
         webview.loadUrl("http://192.168.43.17");

@@ -1,18 +1,18 @@
 package com.example.thuan.opaquewindowapp;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableRow;
 
-
+/* This class is used to select the room(s) that the window will be in
+ * and will allow the user to enter that specific room to control the window
+ * pane/ room state.
+ */
 public class SelectRoomPage extends Activity implements View.OnClickListener {
 
     TableRow tableRow1, tableRow2, tableRow3, tableRow4, tableRow5;
@@ -41,7 +41,12 @@ public class SelectRoomPage extends Activity implements View.OnClickListener {
 
     }
 
-    public void onClick(View v) {
+    /*This function allows the user to interact with the room options.
+     * For the purpose of this project, only the main room is implemented
+     * and all other rooms will return a message indicating that no
+     * product is installed in that room.
+     */
+        public void onClick(View v) {
         switch(v.getId()) {
             case R.id.tableRow1:
                 Intent intent = new Intent(SelectRoomPage.this, ControlRoomPage.class);
@@ -65,9 +70,10 @@ public class SelectRoomPage extends Activity implements View.OnClickListener {
 
         }
     }
-
-
-
+    /*This function alerts the user that there are no devices in the selected room.
+     * This will prompt a message indicating so and allows the user to go back to
+     * select another room.
+     */
     private void doesRoomExist () {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         dialogBuilder
