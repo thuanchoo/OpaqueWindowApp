@@ -13,6 +13,9 @@ import android.widget.Toast;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 /* This is the control page for the main room selected.
  * This fragment will allow the user to control the product in
  * the specified room by connecting the to the web page that hosts
@@ -21,6 +24,7 @@ import android.webkit.WebViewClient;
  */
 public class ControlRoomPage extends Activity {
 
+    /*Create webview*/
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -51,27 +55,41 @@ public class ControlRoomPage extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_room_page);
 
+        /* Check if internet is connected. If it's not connected, prompt user to enable internet
+         * and try again.
+        */
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo data = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
         if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED ||
                 cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ||
                 data.isConnected()) {
             Toast.makeText(getApplicationContext(), "Internet is connected",Toast.LENGTH_SHORT).show();
 
         }
-
+        // If internet is not enabled, display error message and kick user out of page
         else if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED ||
                 cm.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTING) {
             Toast.makeText(getApplicationContext(), "Internet is not connected",Toast.LENGTH_SHORT).show();
 
+            Intent intent = new Intent(ControlRoomPage.this, SelectRoomPage.class);
+            startActivity(intent);
+            ControlRoomPage.this.finish();
         }
+        /*Check if website is available. If not, output message and return to main page */
+        if(isSiteAvailable())
+            Toast.makeText(getApplicationContext(), "Server connection: Success",Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(getApplicationContext(), "Cannot connect to server, try again later",Toast.LENGTH_SHORT).show();
+        }
+
         webview=(WebView)findViewById(R.id.webView);
         webview.getSettings().setJavaScriptEnabled(true);
         webview.setWebViewClient(new MyWebViewClient());
 
         final Context myApp = this;
 
-/* Set web client to allow javascript messages from the website */
+/* Set web client to allow javascript messages from the website*/
         webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onJsAlert(WebView view, String url, String message, final android.webkit.JsResult result)
@@ -105,6 +123,20 @@ public class ControlRoomPage extends Activity {
         webview.loadUrl("http://192.168.43.17");
         webview.requestFocus();
     }
+
+    boolean isSiteAvailable(){
+        try {
+            URL url = new URL ("http://192.168.43.17");
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.connect();
+            urlConnection.disconnect();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 
 
