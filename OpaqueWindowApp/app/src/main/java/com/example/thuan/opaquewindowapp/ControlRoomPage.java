@@ -7,13 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.widget.Toast;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.URL;
 
 /* This is the control page for the main room selected.
@@ -42,6 +43,19 @@ public class ControlRoomPage extends Activity {
         finish();
 
     }
+    /* On resume, if there is no internet connection, kick user out of the control room page*/
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(!isInternetConnected()){
+            Toast.makeText(getApplicationContext(), "Lost internet Connection",
+                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ControlRoomPage.this, SelectRoomPage.class);
+            startActivity(intent);
+            ControlRoomPage.this.finish();
+        }
+    }
+
     /* To obtain the GUI, a webview is used to display the web page inside the
      * application. In order for the application to control the product, proper
      * internet connection is required. The following code will determine if
@@ -54,34 +68,6 @@ public class ControlRoomPage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_room_page);
-
-        /* Check if internet is connected. If it's not connected, prompt user to enable internet
-         * and try again.
-        */
-        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo data = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED ||
-                cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ||
-                data.isConnected()) {
-            Toast.makeText(getApplicationContext(), "Internet is connected",Toast.LENGTH_SHORT).show();
-
-        }
-        // If internet is not enabled, display error message and kick user out of page
-        else if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED ||
-                cm.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTING) {
-            Toast.makeText(getApplicationContext(), "Internet is not connected",Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(ControlRoomPage.this, SelectRoomPage.class);
-            startActivity(intent);
-            ControlRoomPage.this.finish();
-        }
-        /*Check if website is available. If not, output message and return to main page */
-        if(isSiteAvailable())
-            Toast.makeText(getApplicationContext(), "Server connection: Success",Toast.LENGTH_SHORT).show();
-        else{
-            Toast.makeText(getApplicationContext(), "Cannot connect to server, try again later",Toast.LENGTH_SHORT).show();
-        }
 
         webview=(WebView)findViewById(R.id.webView);
         webview.getSettings().setJavaScriptEnabled(true);
@@ -108,10 +94,10 @@ public class ControlRoomPage extends Activity {
                         .setCancelable(false)
                         .create()
                         .show();
-
                 return true;
             };
         });
+        //open the connection and display to user
         openURL();
     }
      /* Function that Opens the URL in webview browser within app.
@@ -124,20 +110,23 @@ public class ControlRoomPage extends Activity {
         webview.requestFocus();
     }
 
-    boolean isSiteAvailable(){
-        try {
-            URL url = new URL ("http://192.168.43.17");
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.connect();
-            urlConnection.disconnect();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+    /* Check if internet is not connected; prompt user to enable internet
+     * and try again.
+     */
+    public boolean isInternetConnected(){
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+        //check wifi connectivity
+        if (!wifi.isWifiEnabled()){
+            //check data connectivity
+            if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED ||
+                    cm.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTING) {
+                Toast.makeText(getApplicationContext(), "Please connect to internet before continuing",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }
-        return false;
+        return true;
     }
-
-
-
 
 }

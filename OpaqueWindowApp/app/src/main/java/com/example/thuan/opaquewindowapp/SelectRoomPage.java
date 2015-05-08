@@ -39,20 +39,6 @@ public class SelectRoomPage extends Activity implements View.OnClickListener {
         tableRow4.setOnClickListener(this);
         tableRow5.setOnClickListener(this);
 
-        /* Check if internet is not connected; prompt user to enable internet
-         * and try again.
-        */
-        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
-        //check wifi connectivity
-        if (!wifi.isWifiEnabled()){
-             //check data connectivity
-            if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED ||
-                    cm.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTING) {
-                Toast.makeText(getApplicationContext(), "Please connect to internet before continuing",
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     /*This function allows the user to interact with the room options.
@@ -63,9 +49,11 @@ public class SelectRoomPage extends Activity implements View.OnClickListener {
         public void onClick(View v) {
         switch(v.getId()) {
             case R.id.tableRow1:
-                Intent intent = new Intent(SelectRoomPage.this, ControlRoomPage.class);
-                startActivity(intent);
-                SelectRoomPage.this.finish();
+                if (isInternetConnected()){
+                    Intent intent = new Intent(SelectRoomPage.this, ControlRoomPage.class);
+                    startActivity(intent);
+                    SelectRoomPage.this.finish();
+                }
                 break;
             case R.id.tableRow2:
                 doesRoomExist();
@@ -84,6 +72,26 @@ public class SelectRoomPage extends Activity implements View.OnClickListener {
 
         }
     }
+
+        /* Check if internet is not connected; prompt user to enable internet
+         * and try again.
+        */
+    public boolean isInternetConnected(){
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+        //check wifi connectivity
+        if (!wifi.isWifiEnabled()){
+            //check data connectivity
+            if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED ||
+                    cm.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTING) {
+                Toast.makeText(getApplicationContext(), "Please connect to internet before continuing",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
     /*This function alerts the user that there are no devices in the selected room.
      * This will prompt a message indicating so and allows the user to go back to
      * select another room.
